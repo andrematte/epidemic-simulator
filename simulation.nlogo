@@ -1,35 +1,36 @@
 globals[
-susceptibles_
-infecteds_
-recovereds_
-width
-dt
+  susceptibles_
+  infecteds_
+  recovereds_
+  width
+  dt
 ]
 
 
 turtles-own[
-status
+  status
 ]
 
 
 to setup
-ca
-reset-ticks
-set dt 0.003
-set width 60
-resize-world 0 width 0 width
+  random-seed Seed
+  ca
+  reset-ticks
+  set dt 0.003
+  set width 60
+  resize-world 0 width 0 width
 
 
-;; Criar agentes
-set susceptibles_ susceptibles
-crt susceptibles_ [set status 1 move-to one-of patches ]
-ask turtles [
+  ;; Criar agentes
+  set susceptibles_ susceptibles
+  crt susceptibles_ [set status 1 move-to one-of patches ]
+  ask turtles [
     rt random 360 fd 1
     set shape "person"
     set size 1.5
   ]
-ask n-of 1 turtles [set status 2] ;; Um agente infectado inicialmente
-change-color
+  ask n-of 1 turtles [set status 2] ;; Um agente infectado inicialmente
+  change-color
 
 end
 
@@ -68,19 +69,18 @@ end
 
 
 to change-color
-;; 1 - Verde - Suscetível
-;; 2 - Vermelho - Infectado
-;; 3 - Azul - Removido
-ask turtles[ if status = 1[set color green]
-             if status = 2[set color red]
-             if status = 3[set color blue]]
+  ;; 1 - Verde - Suscetível
+  ;; 2 - Vermelho - Infectado
+  ;; 3 - Azul - Removido
+  ask turtles[ if status = 1[set color green]
+               if status = 2[set color red]
+               if status = 3[set color blue]
+  ]
 
-;; ask turtles [set shape "person"]
 end
 
 
 to plot-sir
-;;plot the numbers of susceptibles, infecteds, recovereds over time
   if plot-pen-exists? "susceptibles" [
     set-current-plot-pen "susceptibles"
     plotxy ticks susceptibles_
@@ -220,6 +220,17 @@ susceptibles
 1
 NIL
 HORIZONTAL
+
+INPUTBOX
+37
+221
+186
+281
+Seed
+23.0
+1
+0
+Number
 
 @#$#@#$#@
 @#$#@#$#@
