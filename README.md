@@ -1,6 +1,6 @@
-# PPGEE0260: Modelagem e Simulação Discreta de Sistemas
 # Simulação Epidemiológica Baseada em Agentes
 
+PPGEE0260: Modelagem e Simulação Discreta de Sistemas
 Aluno: Carlos André de Mattos Teixeira
 
 Código baseado em: https://github.com/YangZhouCSS/Four_models
