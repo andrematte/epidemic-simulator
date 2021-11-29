@@ -3,7 +3,7 @@
 
 Aluno: Carlos André de Mattos Teixeira
 
-Código baseado em: http://geospatialcss.blogspot.com/2017/06/comparing-four-modeling-approaches.html  
+Código baseado em: https://github.com/YangZhouCSS/Four_models
 
 ## Descrição do Projeto
 
