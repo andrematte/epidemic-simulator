@@ -33,7 +33,7 @@ Código baseado em: http://geospatialcss.blogspot.com/2017/06/comparing-four-mod
 - Pressionar o botão Executar para rodar a simulação.
 - **Opcional**: 
   - Salvar os resultados em arquivos csv (clicar com o botão direito nos gráficos de simulação.
-  - Executar o arquivo ['results.ipynb'](https://github.com/andrematte/epidemic-simulator/results.ipynb) para gerar os gráficos de resultados.
+  - Executar o arquivo [`results.ipynb`](https://github.com/andrematte/epidemic-simulator/results.ipynb) para gerar os gráficos de resultados.
 
 ## Referências
 
