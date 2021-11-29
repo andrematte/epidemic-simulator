@@ -28,12 +28,12 @@ Código baseado em: https://github.com/YangZhouCSS/Four_models
 
 ## Instruções de Execução
 
-- Executar o arquivo [`simulation.nlogo`](https://github.com/andrematte/epidemic-simulator/simulation.nlogo).
+- Executar o arquivo [`simulation.nlogo`](https://github.com/andrematte/epidemic-simulator/blob/main/simulation.nlogo).
 - Utilizar os sliders para selecionar as configurações de simulação desejadas.
 - Pressionar o botão Executar para rodar a simulação.
 - **Opcional**: 
   - Salvar os resultados em arquivos csv (clicar com o botão direito nos gráficos de simulação.
-  - Executar o arquivo [`results.ipynb`](https://github.com/andrematte/epidemic-simulator/results.ipynb) para gerar os gráficos de resultados.
+  - Executar o arquivo [`results.ipynb`](https://github.com/andrematte/epidemic-simulator/blob/main/results.ipynb) para gerar os gráficos de resultados.
 
 ## Referências
 
