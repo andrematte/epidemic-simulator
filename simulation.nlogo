@@ -4,6 +4,9 @@ globals[
   recovereds_
   width
   dt
+
+  already_infected
+  already_recovered
 ]
 
 
@@ -30,7 +33,17 @@ to setup
     set size 1.5
   ]
   ask n-of 1 turtles [set status 2] ;; Um agente infectado inicialmente
-  change-color
+
+
+  ;; Colorir agentes
+  ask turtles[ if status = 1[set color green]
+               if status = 2[set color red]
+               if status = 3[set color blue]
+  ]
+
+  ;; Contadores
+  set already_infected 0
+  set already_recovered 0
 
 end
 
@@ -46,13 +59,19 @@ to go
   ask turtles with [status = 2][
     ask turtles-here [
       if random-float 1 < (InfectionRate * ( width * width )* dt)[
-        if status = 1 [set status 2]]
+        if status = 1 [
+          set status 2
+          set already_infected already_infected + 1
+        ]
+
+      ]
     ]]
 
   ;; Recuperação dos infectados a uma taxa
   ask turtles with [status = 2][
     if random-float 1 < RecoveryRate * dt [
       set status 3
+      set already_recovered already_recovered + 1
     ]]
 
   ;; Contador de agentes de cada tipo
@@ -60,40 +79,18 @@ to go
   set infecteds_ count turtles with [status = 2]
   set recovereds_ count turtles with [status = 3]
 
-  change-color
-
-  plot-sir
-
-  tick
-end
-
-
-to change-color
-  ;; 1 - Verde - Suscetível
-  ;; 2 - Vermelho - Infectado
-  ;; 3 - Azul - Removido
+  ;; Colorir agentes
   ask turtles[ if status = 1[set color green]
                if status = 2[set color red]
                if status = 3[set color blue]
   ]
 
+  tick
 end
 
 
-to plot-sir
-  if plot-pen-exists? "susceptibles" [
-    set-current-plot-pen "susceptibles"
-    plotxy ticks susceptibles_
-  ]
-  if plot-pen-exists? "infecteds" [
-    set-current-plot-pen "infecteds"
-    plotxy ticks infecteds_
-  ]
-  if plot-pen-exists? "recovereds" [
-    set-current-plot-pen "recovereds"
-    plotxy ticks recovereds_
-  ]
-end
+
+
 @#$#@#$#@
 GRAPHICS-WINDOW
 223
@@ -148,7 +145,7 @@ InfectionRate
 InfectionRate
 0
 0.1
-0.05
+0.06
 .001
 1
 NIL
@@ -173,7 +170,7 @@ PLOT
 862
 35
 1271
-365
+191
 SIR
 NIL
 NIL
@@ -185,9 +182,9 @@ true
 true
 "" ""
 PENS
-"infecteds" 1.0 0 -2674135 true "" ""
-"recovereds" 1.0 0 -13345367 true "" ""
-"susceptibles" 1.0 0 -13840069 true "" ""
+"infecteds" 1.0 0 -2674135 true "" "plot count turtles with [status = 2]"
+"recovereds" 1.0 0 -13345367 true "" "plot count turtles with [status = 3]"
+"susceptibles" 1.0 0 -13840069 true "" "plot count turtles with [status = 1]"
 
 BUTTON
 110
@@ -215,7 +212,7 @@ susceptibles
 susceptibles
 250
 2000
-500.0
+1000.0
 250
 1
 NIL
@@ -231,6 +228,47 @@ Seed
 1
 0
 Number
+
+PLOT
+862
+208
+1271
+366
+Cumulative
+NIL
+NIL
+0.0
+10.0
+0.0
+10.0
+true
+true
+"" ""
+PENS
+"infecteds" 1.0 0 -2674135 true "" "plot already_infected"
+"recovereds" 1.0 0 -13345367 true "" "plot already_recovered"
+
+MONITOR
+863
+380
+1045
+445
+Infected Total
+count turtles with [status = 2]
+0
+1
+16
+
+MONITOR
+1065
+380
+1270
+445
+Infected Ratio (%)
+count turtles with [status = 2] / susceptibles
+2
+1
+16
 
 @#$#@#$#@
 @#$#@#$#@
